@@ -3,7 +3,7 @@ import bpy
 import bmesh
 from bpy_extras import object_utils
 
-def main(context):
+def record(context):
     
     # go to object mode
     bpy.ops.object.mode_set(mode='OBJECT')
@@ -66,15 +66,15 @@ def main(context):
     
 class SimpleOperator(bpy.types.Operator):
     """Tooltip"""
-    bl_idname = "object.simple_operator"
-    bl_label = "Simple Object Operator"
+    bl_idname = "object.record"
+    bl_label = "Record Frame"
 
     @classmethod
     def poll(cls, context):
         return context.active_object is not None
 
     def execute(self, context):
-        main(context)
+        record(context)
         return {'FINISHED'}
 
 # make a ui panel for this sculpt recorder
@@ -91,51 +91,11 @@ class LayoutDemoPanel(bpy.types.Panel):
 
         scene = context.scene
 
-        # Create a simple row.
-        layout.label(text=" Simple Row:")
-
-        row = layout.row()
-        row.prop(scene, "frame_start")
-        row.prop(scene, "frame_end")
-
-        # Create an row where the buttons are aligned to each other.
-        layout.label(text=" Aligned Row:")
-
-        row = layout.row(align=True)
-        row.prop(scene, "frame_start")
-        row.prop(scene, "frame_end")
-
-        # Create two columns, by using a split layout.
-        split = layout.split()
-
-        # First column
-        col = split.column()
-        col.label(text="Column One:")
-        col.prop(scene, "frame_end")
-        col.prop(scene, "frame_start")
-
-        # Second column, aligned
-        col = split.column(align=True)
-        col.label(text="Column Two:")
-        col.prop(scene, "frame_start")
-        col.prop(scene, "frame_end")
-
         # Big render button
-        layout.label(text="Big Button:")
         row = layout.row()
-        row.scale_y = 3.0
-        row.operator("object.simple_operator")
+        row.scale_y = 5.0
+        row.operator("object.record")
 
-        # Different sizes in a row
-        layout.label(text="Different button sizes:")
-        row = layout.row(align=True)
-        row.operator("render.render")
-
-        sub = row.row()
-        sub.scale_x = 2.0
-        sub.operator("render.render")
-
-        row.operator("render.render")
 
 
 def register():
