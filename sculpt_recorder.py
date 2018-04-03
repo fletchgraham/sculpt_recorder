@@ -4,13 +4,8 @@ import bmesh
 from bpy_extras import object_utils
 
 def main(context):
-    # go to object mode
-    '''for area in bpy.context.screen.areas:
-        if area.type == 'VIEW_3D':
-            override = bpy.context.copy()
-            override['area'] = area
-            break'''
     
+    # go to object mode
     bpy.ops.object.mode_set(mode='OBJECT')
 
     ob = bpy.context.object
@@ -89,7 +84,7 @@ class LayoutDemoPanel(bpy.types.Panel):
     bl_idname = "SCENE_PT_layout"
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'TOOLS'
-    bl_category = "Sculpt Recorder"
+    bl_category = "Tools"
 
     def draw(self, context):
         layout = self.layout
