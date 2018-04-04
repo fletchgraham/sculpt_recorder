@@ -77,7 +77,7 @@ def record(context):
 class SimpleOperator(bpy.types.Operator):
     """Tooltip"""
     bl_idname = "object.record"
-    bl_label = "Record Frame"
+    bl_label = ""
 
     @classmethod
     def poll(cls, context):
@@ -102,6 +102,7 @@ class LayoutDemoPanel(bpy.types.Panel):
         scene = context.scene
 
         # Big render button
+        layout.label(text="Record Frame:")
         row = layout.row()
         row.scale_y = 5.0
         row.operator("object.record")
