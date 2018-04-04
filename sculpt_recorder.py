@@ -3,6 +3,16 @@ import bpy
 import bmesh
 from bpy_extras import object_utils
 
+bl_info = {  
+ "name": "Sculpt Recorder",  
+ "author": "Fletcher Graham (fletchgraham)",  
+ "version": (0, 1),  
+ "blender": (2, 7, 9),  
+ "location": "View3D > Tools > Sculpt Recorder",  
+ "description": "Records a history of the current sculpt as objects on the timeline.",  
+ "warning": "Can result in large blend files.",  
+ "category": "Sculpting"}  
+
 def record(context):
     
     # go to object mode
